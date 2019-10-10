@@ -1,0 +1,1027 @@
+# source: http://localhost:5000/graphql
+# timestamp: Mon Sep 16 2019 19:36:04 GMT+0200 (Central European Summer Time)
+
+"""Provide a description for your child table."""
+type ChildTable implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: Int!
+  name: String
+  summary: String
+  createdDate: Datetime
+  updatedDate: Datetime
+  parentTableId: Int!
+
+  """Reads a single `ParentTable` that is related to this `ChildTable`."""
+  parentTableByParentTableId: ParentTable
+}
+
+"""
+A condition to be used against `ChildTable` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ChildTableCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: Int
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+
+  """Checks for equality with the object’s `summary` field."""
+  summary: String
+
+  """Checks for equality with the object’s `createdDate` field."""
+  createdDate: Datetime
+
+  """Checks for equality with the object’s `updatedDate` field."""
+  updatedDate: Datetime
+
+  """Checks for equality with the object’s `parentTableId` field."""
+  parentTableId: Int
+}
+
+"""An input for mutations affecting `ChildTable`"""
+input ChildTableInput {
+  id: Int
+  name: String
+  summary: String
+  createdDate: Datetime
+  updatedDate: Datetime
+  parentTableId: Int!
+}
+
+"""
+Represents an update to a `ChildTable`. Fields that are set will be updated.
+"""
+input ChildTablePatch {
+  id: Int
+  name: String
+  summary: String
+  createdDate: Datetime
+  updatedDate: Datetime
+  parentTableId: Int
+}
+
+"""A connection to a list of `ChildTable` values."""
+type ChildTablesConnection {
+  """A list of `ChildTable` objects."""
+  nodes: [ChildTable]!
+
+  """
+  A list of edges which contains the `ChildTable` and cursor to aid in pagination.
+  """
+  edges: [ChildTablesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ChildTable` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ChildTable` edge in the connection."""
+type ChildTablesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ChildTable` at the end of the edge."""
+  node: ChildTable
+}
+
+"""Methods to use when ordering `ChildTable`."""
+enum ChildTablesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  SUMMARY_ASC
+  SUMMARY_DESC
+  CREATED_DATE_ASC
+  CREATED_DATE_DESC
+  UPDATED_DATE_ASC
+  UPDATED_DATE_DESC
+  PARENT_TABLE_ID_ASC
+  PARENT_TABLE_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""All input for the create `ChildTable` mutation."""
+input CreateChildTableInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ChildTable` to be created by this mutation."""
+  childTable: ChildTableInput!
+}
+
+"""The output of our create `ChildTable` mutation."""
+type CreateChildTablePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ChildTable` that was created by this mutation."""
+  childTable: ChildTable
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `ParentTable` that is related to this `ChildTable`."""
+  parentTableByParentTableId: ParentTable
+
+  """An edge for our `ChildTable`. May be used by Relay 1."""
+  childTableEdge(
+    """The method to use when ordering `ChildTable`."""
+    orderBy: [ChildTablesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ChildTablesEdge
+}
+
+"""All input for the create `ParentTable` mutation."""
+input CreateParentTableInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ParentTable` to be created by this mutation."""
+  parentTable: ParentTableInput!
+}
+
+"""The output of our create `ParentTable` mutation."""
+type CreateParentTablePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ParentTable` that was created by this mutation."""
+  parentTable: ParentTable
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `ParentTable`. May be used by Relay 1."""
+  parentTableEdge(
+    """The method to use when ordering `ParentTable`."""
+    orderBy: [ParentTablesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ParentTablesEdge
+}
+
+"""All input for the create `User` mutation."""
+input CreateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `User` to be created by this mutation."""
+  user: UserInput!
+}
+
+"""The output of our create `User` mutation."""
+type CreateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was created by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
+"""All input for the `deleteChildTableById` mutation."""
+input DeleteChildTableByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: Int!
+}
+
+"""All input for the `deleteChildTable` mutation."""
+input DeleteChildTableInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ChildTable` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `ChildTable` mutation."""
+type DeleteChildTablePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ChildTable` that was deleted by this mutation."""
+  childTable: ChildTable
+  deletedChildTableId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `ParentTable` that is related to this `ChildTable`."""
+  parentTableByParentTableId: ParentTable
+
+  """An edge for our `ChildTable`. May be used by Relay 1."""
+  childTableEdge(
+    """The method to use when ordering `ChildTable`."""
+    orderBy: [ChildTablesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ChildTablesEdge
+}
+
+"""All input for the `deleteParentTableById` mutation."""
+input DeleteParentTableByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: Int!
+}
+
+"""All input for the `deleteParentTable` mutation."""
+input DeleteParentTableInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ParentTable` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `ParentTable` mutation."""
+type DeleteParentTablePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ParentTable` that was deleted by this mutation."""
+  parentTable: ParentTable
+  deletedParentTableId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `ParentTable`. May be used by Relay 1."""
+  parentTableEdge(
+    """The method to use when ordering `ParentTable`."""
+    orderBy: [ParentTablesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ParentTablesEdge
+}
+
+"""All input for the `deleteUserById` mutation."""
+input DeleteUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: Int!
+}
+
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `User` mutation."""
+type DeleteUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was deleted by this mutation."""
+  user: User
+  deletedUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `ChildTable`."""
+  createChildTable(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateChildTableInput!
+  ): CreateChildTablePayload
+
+  """Creates a single `ParentTable`."""
+  createParentTable(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateParentTableInput!
+  ): CreateParentTablePayload
+
+  """Creates a single `User`."""
+  createUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserInput!
+  ): CreateUserPayload
+
+  """
+  Updates a single `ChildTable` using its globally unique id and a patch.
+  """
+  updateChildTable(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateChildTableInput!
+  ): UpdateChildTablePayload
+
+  """Updates a single `ChildTable` using a unique key and a patch."""
+  updateChildTableById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateChildTableByIdInput!
+  ): UpdateChildTablePayload
+
+  """
+  Updates a single `ParentTable` using its globally unique id and a patch.
+  """
+  updateParentTable(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateParentTableInput!
+  ): UpdateParentTablePayload
+
+  """Updates a single `ParentTable` using a unique key and a patch."""
+  updateParentTableById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateParentTableByIdInput!
+  ): UpdateParentTablePayload
+
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByIdInput!
+  ): UpdateUserPayload
+
+  """Deletes a single `ChildTable` using its globally unique id."""
+  deleteChildTable(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteChildTableInput!
+  ): DeleteChildTablePayload
+
+  """Deletes a single `ChildTable` using a unique key."""
+  deleteChildTableById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteChildTableByIdInput!
+  ): DeleteChildTablePayload
+
+  """Deletes a single `ParentTable` using its globally unique id."""
+  deleteParentTable(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteParentTableInput!
+  ): DeleteParentTablePayload
+
+  """Deletes a single `ParentTable` using a unique key."""
+  deleteParentTableById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteParentTableByIdInput!
+  ): DeleteParentTablePayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByIdInput!
+  ): DeleteUserPayload
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Provide a description for your parent table."""
+type ParentTable implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: Int!
+  name: String
+  description: String
+  createdDate: Datetime
+  updatedDate: Datetime
+
+  """Reads and enables pagination through a set of `ChildTable`."""
+  childTablesByParentTableId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `ChildTable`."""
+    orderBy: [ChildTablesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ChildTableCondition
+  ): ChildTablesConnection!
+}
+
+"""
+A condition to be used against `ParentTable` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ParentTableCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: Int
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+
+  """Checks for equality with the object’s `createdDate` field."""
+  createdDate: Datetime
+
+  """Checks for equality with the object’s `updatedDate` field."""
+  updatedDate: Datetime
+}
+
+"""An input for mutations affecting `ParentTable`"""
+input ParentTableInput {
+  id: Int
+  name: String
+  description: String
+  createdDate: Datetime
+  updatedDate: Datetime
+}
+
+"""
+Represents an update to a `ParentTable`. Fields that are set will be updated.
+"""
+input ParentTablePatch {
+  id: Int
+  name: String
+  description: String
+  createdDate: Datetime
+  updatedDate: Datetime
+}
+
+"""A connection to a list of `ParentTable` values."""
+type ParentTablesConnection {
+  """A list of `ParentTable` objects."""
+  nodes: [ParentTable]!
+
+  """
+  A list of edges which contains the `ParentTable` and cursor to aid in pagination.
+  """
+  edges: [ParentTablesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ParentTable` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ParentTable` edge in the connection."""
+type ParentTablesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ParentTable` at the end of the edge."""
+  node: ParentTable
+}
+
+"""Methods to use when ordering `ParentTable`."""
+enum ParentTablesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  CREATED_DATE_ASC
+  CREATED_DATE_DESC
+  UPDATED_DATE_ASC
+  UPDATED_DATE_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `ChildTable`."""
+  allChildTables(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `ChildTable`."""
+    orderBy: [ChildTablesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ChildTableCondition
+  ): ChildTablesConnection
+
+  """Reads and enables pagination through a set of `ParentTable`."""
+  allParentTables(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `ParentTable`."""
+    orderBy: [ParentTablesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ParentTableCondition
+  ): ParentTablesConnection
+
+  """Reads and enables pagination through a set of `User`."""
+  allUsers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+  ): UsersConnection
+  childTableById(id: Int!): ChildTable
+  parentTableById(id: Int!): ParentTable
+  userById(id: Int!): User
+
+  """Reads a single `ChildTable` using its globally unique `ID`."""
+  childTable(
+    """
+    The globally unique `ID` to be used in selecting a single `ChildTable`.
+    """
+    nodeId: ID!
+  ): ChildTable
+
+  """Reads a single `ParentTable` using its globally unique `ID`."""
+  parentTable(
+    """
+    The globally unique `ID` to be used in selecting a single `ParentTable`.
+    """
+    nodeId: ID!
+  ): ParentTable
+
+  """Reads a single `User` using its globally unique `ID`."""
+  user(
+    """The globally unique `ID` to be used in selecting a single `User`."""
+    nodeId: ID!
+  ): User
+}
+
+"""All input for the `updateChildTableById` mutation."""
+input UpdateChildTableByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ChildTable` being updated.
+  """
+  childTablePatch: ChildTablePatch!
+  id: Int!
+}
+
+"""All input for the `updateChildTable` mutation."""
+input UpdateChildTableInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ChildTable` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `ChildTable` being updated.
+  """
+  childTablePatch: ChildTablePatch!
+}
+
+"""The output of our update `ChildTable` mutation."""
+type UpdateChildTablePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ChildTable` that was updated by this mutation."""
+  childTable: ChildTable
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `ParentTable` that is related to this `ChildTable`."""
+  parentTableByParentTableId: ParentTable
+
+  """An edge for our `ChildTable`. May be used by Relay 1."""
+  childTableEdge(
+    """The method to use when ordering `ChildTable`."""
+    orderBy: [ChildTablesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ChildTablesEdge
+}
+
+"""All input for the `updateParentTableById` mutation."""
+input UpdateParentTableByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ParentTable` being updated.
+  """
+  parentTablePatch: ParentTablePatch!
+  id: Int!
+}
+
+"""All input for the `updateParentTable` mutation."""
+input UpdateParentTableInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ParentTable` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `ParentTable` being updated.
+  """
+  parentTablePatch: ParentTablePatch!
+}
+
+"""The output of our update `ParentTable` mutation."""
+type UpdateParentTablePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ParentTable` that was updated by this mutation."""
+  parentTable: ParentTable
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `ParentTable`. May be used by Relay 1."""
+  parentTableEdge(
+    """The method to use when ordering `ParentTable`."""
+    orderBy: [ParentTablesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ParentTablesEdge
+}
+
+"""All input for the `updateUserById` mutation."""
+input UpdateUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  id: Int!
+}
+
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+}
+
+"""The output of our update `User` mutation."""
+type UpdateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was updated by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+type User implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: Int!
+  email: String!
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: Int
+
+  """Checks for equality with the object’s `email` field."""
+  email: String
+}
+
+"""An input for mutations affecting `User`"""
+input UserInput {
+  id: Int
+  email: String!
+}
+
+"""Represents an update to a `User`. Fields that are set will be updated."""
+input UserPatch {
+  id: Int
+  email: String
+}
+
+"""A connection to a list of `User` values."""
+type UsersConnection {
+  """A list of `User` objects."""
+  nodes: [User]!
+
+  """
+  A list of edges which contains the `User` and cursor to aid in pagination.
+  """
+  edges: [UsersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `User` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `User` at the end of the edge."""
+  node: User
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
